@@ -1,0 +1,30 @@
+package_name: {{cookiecutter.package_name}}
+
+# LOCAL DATA FILES
+raw_data: raw_data.xlsx
+processed_data: processed_data.xlsx
+train_data_file: training_data.xlsx
+test_data_file: test_data.xlsx
+
+# PIPELINE FILES
+preprocess_pipeline_name: preprocessing_pipeline
+analysis_pipeline_name: analysis_pipeline
+preprocessing_pipeline_save_file: preprocessing_pipeline_output_v
+analysis_pipeline_save_file: analysis_pipeline_output_v
+
+# VARIABLE SPECIFICATIONS
+targets:
+  - target
+
+variables_to_include:
+  - var_1
+  - var_2
+  - var_3
+  - var_4
+
+
+# PARAMETER SETTINGS
+random_state: 42
+test_size: 0.1
+alpha: 0.05
+variance_threshold: 0.01
