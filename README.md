@@ -6,4 +6,4 @@ Each template  functions as a scaffolding for a basic project setup which includ
 directory structure and files.
 
 A template is stored as a branch and can be directly used via the command line via 
-cookiecutter https://github.com/mindset-primary/project_templates.git --checkout <branchname>
+cookiecutter https://github.com/mindset-primary/project_templates.git --checkout branchname
