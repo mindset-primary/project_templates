@@ -15,14 +15,17 @@ def main():
 
     ProcessLogger.processLogger.info(f" ======== Starting process with version: {_version} ========")
     
-    ###raw_df = load_excel(file_name=config.package_config.raw_data)
+    ### LOAD DATA
+    raw_df = load_excel(file_name=config.package_config.raw_data)
     ProcessLogger.processLogger.info(f"Running pipeline: \n {preprocessing_pipeline}")
     
-    ### processed_df = preprocessing_pipeline.fit_transform(raw_df)
-    ### export_excel(data= processed_df, file_name=f"biolab_data_processed")
+    ### PROCESS DATA
+    #processed_df = preprocessing_pipeline.fit_transform(raw_df)
+    #export_excel(data= processed_df, file_name=f"biolab_data_processed")
 
+    ### ANALYSE DATA
     ProcessLogger.processLogger.info(f"Running pipeline: \n {analysis_pipeline}")
-    #### analysis_pipeline.fit_transform(processed_df)
+    #analysis_pipeline.fit_transform(processed_df)
 
     ProcessLogger.processLogger.info(f" =========== END ===========")
 

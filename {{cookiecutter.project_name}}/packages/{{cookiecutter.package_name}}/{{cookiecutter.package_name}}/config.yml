@@ -1,7 +1,7 @@
 package_name: {{cookiecutter.package_name}}
 
 # LOCAL DATA FILES
-raw_data: raw_data.xlsx
+raw_data: example_data.xlsx
 processed_data: processed_data.xlsx
 train_data_file: training_data.xlsx
 test_data_file: test_data.xlsx
@@ -12,7 +12,7 @@ analysis_pipeline_name: analysis_pipeline
 preprocessing_pipeline_save_file: preprocessing_pipeline_output_v
 analysis_pipeline_save_file: analysis_pipeline_output_v
 
-# VARIABLE SPECIFICATIONS
+# PACKAGE-LEVEL VARIABLE SPECIFICATIONS
 targets:
   - target
 
@@ -28,3 +28,14 @@ random_state: 42
 test_size: 0.1
 alpha: 0.05
 variance_threshold: 0.01
+
+
+
+# LOGISTIC REGRESSION MODEL SPECIFICATIONS
+dependent_variable: q23_1
+
+independent_variables:
+  - q5
+  - q6
+  - q8
+  - q12
