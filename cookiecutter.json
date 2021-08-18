@@ -1,4 +1,7 @@
 {
     "project_name": "themis",
-    "package_name": "package_name"
+    "package_name": "package_name",
+    "project_author": "project_author",
+    "contact_author": "contact_author",
+    "client_name": "client_name"
 }
