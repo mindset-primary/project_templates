@@ -4,7 +4,7 @@ import pandas as pd
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 
-from test.{{cookiecutter.package_name}}.regression.regression_resources import RegressionResourceRetainer
+from {{cookiecutter.package_name}}.regression.regression_resources import RegressionResourceRetainer
 from {{cookiecutter.package_name}}.config.logging_config import ProcessLogger
 from {{cookiecutter.package_name}}.config import config
 
