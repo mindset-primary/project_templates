@@ -53,6 +53,15 @@ class ModelConfig(BaseModel):
     random_state: int
     test_size: float
 
+class LogisticRegressionModelConfig(BaseModel):
+    """
+    All configurations pertaining to
+    the logistic regression.
+    """
+
+    dependent_variable: str
+    independent_variables: List[str]
+    
 class Config(BaseModel):
     ''' 
     Core config object.
@@ -61,6 +70,7 @@ class Config(BaseModel):
 
     package_config: PackageConfig
     model_config: ModelConfig
+    logistic_regression_config: LogisticRegressionModelConfig
 
 def detect_config_file() -> Path:
     '''
@@ -94,7 +104,8 @@ def create_and_validate_configurations(parsed_config_file: YAML = None) -> Confi
     
     _config = Config(
         package_config=PackageConfig(**parsed_config_file.data),
-        model_config=ModelConfig(**parsed_config_file.data)
+        model_config=ModelConfig(**parsed_config_file.data),
+        logistic_regression_config=LogisticRegressionModelConfig(**parsed_config_file.data)
     )
 
     return _config

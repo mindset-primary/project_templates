@@ -14,13 +14,15 @@ analysis_pipeline_save_file: analysis_pipeline_output_v
 
 # PACKAGE-LEVEL VARIABLE SPECIFICATIONS
 targets:
-  - target
+  - q23_1
 
 variables_to_include:
-  - var_1
-  - var_2
-  - var_3
-  - var_4
+  - q23_1
+  - q24_1
+  - q5
+  - q6
+  - q8
+  - q12
 
 
 # PARAMETER SETTINGS

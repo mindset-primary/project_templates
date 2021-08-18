@@ -12,6 +12,7 @@ typing_extensions>=3.7.4,<3.8.0
 xlrd>=1.0.0
 openpyxl>=3
 xlsxwriter
+lxml>=3.6.3
 
 # Styling
 pytest>=6.2.3,<6.3.0
