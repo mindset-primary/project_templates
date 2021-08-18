@@ -130,8 +130,6 @@ dmypy.json
 
 
 # MISC
-*.xlsx
-*.csv
 *.ipynb
 *.log
 *.docx
