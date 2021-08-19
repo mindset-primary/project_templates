@@ -21,8 +21,10 @@ analysis_pipeline = Pipeline(
                 export=True)
         ),
         (
-            "Analysis pipeline Step ...",
-            print('Step ...')
+            "Tabulate and test group differences",
+            analyze.SeriesOfTabulations(
+                dependent_variables=config.logistic_regression_config.dependent_variable,
+                independent_variables=config.logistic_regression_config.independent_variables),
         ),
         (
             "Analysis pipeline Step N",
