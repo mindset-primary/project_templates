@@ -5,6 +5,7 @@ from {{cookiecutter.package_name}}.processing.data_management import load_excel,
 from {{cookiecutter.package_name}}.pipelines.preprocessing_pipeline import preprocessing_pipeline
 from {{cookiecutter.package_name}}.pipelines.analysis_pipeline import analysis_pipeline
 
+from dotenv import find_dotenv, load_dotenv
 
 
 
@@ -15,6 +16,10 @@ def main():
 
     ProcessLogger.processLogger.info(f"======== Starting process with version: {_version} ======== \n")
     
+    ### LOAD CREDENTIALS
+    load_dotenv(find_dotenv())
+
+
     ### LOAD DATA
     raw_df = load_excel(file_name=config.package_config.raw_data)
     ProcessLogger.processLogger.info(f"Running pipeline: \n {preprocessing_pipeline}")
