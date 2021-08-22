@@ -61,6 +61,15 @@ class LogisticRegressionModelConfig(BaseModel):
 
     dependent_variable: str
     independent_variables: List[str]
+
+class BinaryGraphConfig(BaseModel):
+    """
+    All configurations pertaining to
+    the logistic regression.
+    """
+
+    binary_graph_dependent_variables: List[str]
+    binary_graph_independent_variables: List[str]
     
 class Config(BaseModel):
     ''' 
@@ -71,6 +80,7 @@ class Config(BaseModel):
     package_config: PackageConfig
     model_config: ModelConfig
     logistic_regression_config: LogisticRegressionModelConfig
+    binary_graph_config: BinaryGraphConfig
 
 def detect_config_file() -> Path:
     '''
@@ -105,7 +115,8 @@ def create_and_validate_configurations(parsed_config_file: YAML = None) -> Confi
     _config = Config(
         package_config=PackageConfig(**parsed_config_file.data),
         model_config=ModelConfig(**parsed_config_file.data),
-        logistic_regression_config=LogisticRegressionModelConfig(**parsed_config_file.data)
+        logistic_regression_config=LogisticRegressionModelConfig(**parsed_config_file.data),
+        binary_graph_config=BinaryGraphConfig(**parsed_config_file.data)
     )
 
     return _config

@@ -27,6 +27,12 @@ analysis_pipeline = Pipeline(
                 independent_variables=config.logistic_regression_config.independent_variables),
         ),
         (
+            "Barchart",
+            analyze.SeriesOfBinaryGraphs(
+                dependent_variables=config.binary_graph_config.dependent_variables,
+                independent_variables=config.binary_graph_config.independent_variables)
+        ),
+        (
             "Analysis pipeline Step N",
             print('Step N')
         )

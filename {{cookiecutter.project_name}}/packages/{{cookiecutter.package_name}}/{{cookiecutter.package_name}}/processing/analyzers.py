@@ -12,6 +12,8 @@ from sklearn.feature_selection import f_classif
 from kmodes.kmodes import KModes
 
 from {{cookiecutter.package_name}}.modeling_resources.regression.regression_models import BinaryLogisticRegression
+from {{cookiecutter.package_name}}.modeling_resources.tabulation.tabulation import tabulate_and_test
+from {{cookiecutter.package_name}}.graphs.graphs import BarCharter
 
 from {{cookiecutter.package_name}}.processing.data_management import export_artifact_excel
 from {{cookiecutter.package_name}}.config.logging_config import ProcessLogger
@@ -118,5 +120,60 @@ class LogisticRegressor(BaseEstimator, TransformerMixin):
             logreg.export_model_results()
 
         ProcessLogger.processLogger.info(f" Logistic model fitted: {logreg.model!=False}")
+
+        return X
+
+class SeriesOfTabulations(BaseEstimator, TransformerMixin):
+    def __init__(self, dependent_variables=None, independent_variables=None):
+        if not isinstance(dependent_variables, list):
+            self.dependent_variables = [dependent_variables]
+        else:
+            self.dependent_variables = dependent_variables
+        if not isinstance(independent_variables, list):
+            self.independent_variables = [independent_variables]
+        else:
+            self.independent_variables = independent_variables
+
+    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+        return self
+
+    def transform(self, X: pd.DataFrame):
+
+        X = X.copy()
+
+        for dependent_variable in self.dependent_variables:
+            for independent_variable in self.independent_variables:
+                tabulate_and_test(
+                    X, dependent_variable, independent_variable
+                ).tab_test()
+
+        return X
+
+class SeriesOfBinaryGraphs(BaseEstimator, TransformerMixin):
+    def __init__(self, dependent_variables=None, independent_variables=None):
+        if not isinstance(dependent_variables, list):
+            self.dependent_variables = [dependent_variables]
+        else:
+            self.dependent_variables = dependent_variables
+        if not isinstance(independent_variables, list):
+            self.independent_variables = [independent_variables]
+        else:
+            self.independent_variables = independent_variables
+
+    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+        return self
+
+    def transform(self, X: pd.DataFrame):
+
+        X = X.copy()
+
+
+        for variable in self.dependent_variables:
+            for group_variable in self.independent_variables:
+                test_graph = BarCharter(X, 'q23_1', 'q8', labels = {1: 'Male', 2: 'Female'}, stat_annotation='binary')
+                #test_graph.grouped_single_binary_chart().write_image(f"./TEST_GRAPH.png")
+                test_graph.write_image(f"./output/graphical_output/{variable}_{group_variable}.png")
+
+        #figure.write_image(f"./output/results/graph_output/{variable}_{group}.png")
 
         return X

@@ -41,3 +41,11 @@ independent_variables:
   - q6
   - q8
   - q12
+
+
+# BINARY GRAPH SPECIFICATIONS
+binary_graph_dependent_variables: 
+  - q23_1
+
+binary_graph_independent_variables:
+  - q8
