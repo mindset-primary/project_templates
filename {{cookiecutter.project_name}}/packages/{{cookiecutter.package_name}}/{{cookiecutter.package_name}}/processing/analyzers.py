@@ -171,9 +171,6 @@ class SeriesOfBinaryGraphs(BaseEstimator, TransformerMixin):
         for variable in self.dependent_variables:
             for group_variable in self.independent_variables:
                 test_graph = BarCharter(X, 'q23_1', 'q8', labels = {1: 'Male', 2: 'Female'}, stat_annotation='binary')
-                #test_graph.grouped_single_binary_chart().write_image(f"./TEST_GRAPH.png")
-                test_graph.write_image(f"./output/graphical_output/{variable}_{group_variable}.png")
-
-        #figure.write_image(f"./output/results/graph_output/{variable}_{group}.png")
+                test_graph.grouped_single_binary_chart().write_image(f"{config.OUTPUT_DIR}/graphical_output/{variable}_{group_variable}.png")
 
         return X
