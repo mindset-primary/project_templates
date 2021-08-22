@@ -29,8 +29,8 @@ analysis_pipeline = Pipeline(
         (
             "Barchart",
             analyze.SeriesOfBinaryGraphs(
-                dependent_variables=config.binary_graph_config.dependent_variables,
-                independent_variables=config.binary_graph_config.independent_variables)
+                dependent_variables=config.binary_graph_config.binary_graph_dependent_variables,
+                independent_variables=config.binary_graph_config.binary_graph_independent_variables)
         ),
         (
             "Analysis pipeline Step N",
