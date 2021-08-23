@@ -93,6 +93,17 @@ class ChartResource:
         )
 
         return table
+
+    def group_distribution_ordinal_outcome(self):
+        _table = (
+            self.dataframe.replace({-1: np.NaN})
+            .groupby(self.group_variable)[self.output_variable]
+            .value_counts(normalize=True)
+            .round(4)
+            .sort_index()
+        )
+        
+        return _table
     
     def annotate_stat(self, binary=False, ordinal=False):
         if binary == True:

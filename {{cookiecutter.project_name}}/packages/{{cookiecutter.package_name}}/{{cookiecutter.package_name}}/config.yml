@@ -50,6 +50,13 @@ binary_graph_dependent_variables:
 binary_graph_independent_variables:
   - q8
 
+# ORDINAL GRAPH SPECIFICATIONS
+ordinal_graph_dependent_variables: 
+  - q24_1
+
+ordinal_graph_independent_variables:
+  - q8
+
 # STYLING AND COLORS
 barchart_colors:
   - '#F58F86'

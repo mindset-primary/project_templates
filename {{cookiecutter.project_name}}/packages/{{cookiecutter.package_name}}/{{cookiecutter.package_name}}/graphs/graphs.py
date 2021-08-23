@@ -51,3 +51,42 @@ class BarCharter(ChartResource):
             color += 1
             
         return go.Figure(data=data, layout=self.layout)
+    def grouped_barchart_ordinal(self, x_axis_labels=None):
+        """
+        Used for graphing positive responses of grouped ordinal variable.
+        """
+        color = 0
+        data = []
+        
+        _table = self.group_distribution_ordinal_outcome()
+        if self.labels is not None:
+            _table = (
+                self.dataframe.replace({-1: np.NaN})
+                .groupby(self.group_variable)[self.output_variable]
+                .value_counts(normalize=True)
+                .round(4)
+                .sort_index()
+                .rename(index=self.labels, level=0))
+            if x_axis_labels!=None:
+                _table.rename(x_axis_labels, inplace=True)
+            
+        for group, distribution in _table.groupby(level=0):
+            data.append(
+                go.Bar(
+                    x=distribution.index.get_level_values(1),
+                    y=distribution.values,
+                    text=distribution.transform(lambda x: "{:,.1%}".format(x)).values,
+                    textposition="inside",
+                    marker={
+                        "color": self.colors[color],
+                        "line": {
+                            "color": "rgb(255, 255, 255)",
+                            "width": 2,
+                        },
+                    },
+                    name=group,
+                )
+            ),
+            color += 1
+        
+        return go.Figure(data=data, layout=self.layout)

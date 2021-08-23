@@ -27,10 +27,16 @@ analysis_pipeline = Pipeline(
                 independent_variables=config.logistic_regression_config.independent_variables),
         ),
         (
-            "Barchart",
+            "Binary variable barchart",
             analyze.SeriesOfBinaryGraphs(
                 dependent_variables=config.binary_graph_config.binary_graph_dependent_variables,
                 independent_variables=config.binary_graph_config.binary_graph_independent_variables)
+        ),
+        (
+            "Ordinal variable barchart",
+            analyze.SeriesOfOrdinalGraphs(
+                dependent_variables=config.ordinal_graph_config.ordinal_graph_dependent_variables,
+                independent_variables=config.ordinal_graph_config.ordinal_graph_independent_variables)
         ),
         (
             "Analysis pipeline Step N",
