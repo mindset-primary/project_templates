@@ -55,6 +55,7 @@ class BarCharter(ChartResource):
         """
         Used for graphing positive responses of grouped ordinal variable.
         """
+        self.layout['showlegend'] = True
         color = 0
         data = []
         
