@@ -70,6 +70,9 @@ class BinaryGraphConfig(BaseModel):
 
     binary_graph_dependent_variables: List[str]
     binary_graph_independent_variables: List[str]
+
+class GraphStyleConfig(BaseModel):
+    barchart_colors: List[str]
     
 class Config(BaseModel):
     ''' 
@@ -81,6 +84,7 @@ class Config(BaseModel):
     model_config: ModelConfig
     logistic_regression_config: LogisticRegressionModelConfig
     binary_graph_config: BinaryGraphConfig
+    graph_style_config: GraphStyleConfig
 
 def detect_config_file() -> Path:
     '''
@@ -116,7 +120,8 @@ def create_and_validate_configurations(parsed_config_file: YAML = None) -> Confi
         package_config=PackageConfig(**parsed_config_file.data),
         model_config=ModelConfig(**parsed_config_file.data),
         logistic_regression_config=LogisticRegressionModelConfig(**parsed_config_file.data),
-        binary_graph_config=BinaryGraphConfig(**parsed_config_file.data)
+        binary_graph_config=BinaryGraphConfig(**parsed_config_file.data),
+        graph_style_config=GraphStyleConfig(**parsed_config_file.data)
     )
 
     return _config

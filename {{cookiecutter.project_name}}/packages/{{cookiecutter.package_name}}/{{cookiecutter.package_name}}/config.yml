@@ -49,3 +49,12 @@ binary_graph_dependent_variables:
 
 binary_graph_independent_variables:
   - q8
+
+# STYLING AND COLORS
+barchart_colors:
+  - '#F58F86'
+  - '#8DD4DD' 
+  - '#BA98BB' 
+  - '#F6A3B1' 
+  - '#EFF0A9' 
+  - '#FBBDA6'

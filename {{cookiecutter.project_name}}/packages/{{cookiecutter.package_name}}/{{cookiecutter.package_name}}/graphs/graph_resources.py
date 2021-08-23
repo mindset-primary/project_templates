@@ -5,7 +5,7 @@ import plotly.graph_objs as go
 
 from scipy.stats import chi2_contingency, kruskal
 
-COLORS = ["#F58F86", "#8DD4DD", "#BA98BB", "#F6A3B1", "#EFF0A9", "#FBBDA6"] # MOVE THIS TO CONFIG
+from {{cookiecutter.package_name}}.config.config import config
 
 class ChartResource:
     '''
@@ -22,7 +22,7 @@ class ChartResource:
         self.output_variable = output_variable
         self.group_variable = group_variable
         self.labels = labels
-        self.colors = COLORS
+        self.colors = config.graph_style_config.barchart_colors
         
         self.layout = go.Layout(
             template="plotly_white",
@@ -60,12 +60,13 @@ class ChartResource:
             },
             yaxis={
                 "autorange": False,
-                "range": [0, 100], # for percentage use (0-100%)
+                "range": [0, 1], # for percentage use (0-100%)
                 "showgrid": True,
                 "showline": True,
                 "title": "Percentage of responses",
                 "type": "linear",
                 "zeroline": True,
+                "tickformat": "%",
             },
         )
         
@@ -85,8 +86,7 @@ class ChartResource:
         _table = pd.DataFrame(
             self.dataframe.groupby(self.group_variable)[self.output_variable]
             .value_counts(normalize=True)
-            .mul(100)
-            .round(1)
+            .round(4)
         )
         table = _table[_table.index.get_level_values(1) == 1].reset_index(
             level=1, drop=True

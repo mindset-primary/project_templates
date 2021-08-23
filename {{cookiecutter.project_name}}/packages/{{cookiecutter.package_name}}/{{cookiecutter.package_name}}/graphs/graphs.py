@@ -24,7 +24,7 @@ class BarCharter(ChartResource):
                 go.Bar(
                     x = self.group_distribution_binary_outcome()[self.output_variable].index,
                     y = self.group_distribution_binary_outcome()[self.output_variable].values,
-                    text = self.group_distribution_binary_outcome()[self.output_variable].values,
+                    text = self.group_distribution_binary_outcome()[self.output_variable].transform(lambda x: "{:,.1%}".format(x)).values,
                     textposition="inside",
                     marker={
                         "color": self.colors[color],
@@ -40,7 +40,7 @@ class BarCharter(ChartResource):
                 go.Bar(
                     x =self.group_distribution_binary_outcome()[self.output_variable].rename(index=self.labels).index,
                     y = self.group_distribution_binary_outcome()[self.output_variable].values,
-                    text = self.group_distribution_binary_outcome()[self.output_variable].values,
+                    text = self.group_distribution_binary_outcome()[self.output_variable].transform(lambda x: "{:,.1%}".format(x)).values,
                     textposition="inside",
                     marker={
                         "color": self.colors[color],
