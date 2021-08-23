@@ -174,3 +174,30 @@ class SeriesOfBinaryGraphs(BaseEstimator, TransformerMixin):
                 test_graph.grouped_single_binary_chart().write_image(f"{config.OUTPUT_DIR}/graphical_output/{variable}_{group_variable}.png")
 
         return X
+
+class SeriesOfOrdinalGraphs(BaseEstimator, TransformerMixin):
+    def __init__(self, dependent_variables=None, independent_variables=None):
+        if not isinstance(dependent_variables, list):
+            self.dependent_variables = [dependent_variables]
+        else:
+            self.dependent_variables = dependent_variables
+        if not isinstance(independent_variables, list):
+            self.independent_variables = [independent_variables]
+        else:
+            self.independent_variables = independent_variables
+
+    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+        return self
+
+    def transform(self, X: pd.DataFrame):
+
+        X = X.copy()
+
+
+        for variable in self.dependent_variables:
+            for group_variable in self.independent_variables:
+                test_graph = BarCharter(X, variable, group_variable, labels={1: 'Male', 2: 'Female'}, stat_annotation='ordinal')
+                test_graph = test_graph.grouped_barchart_ordinal(x_axis_labels = {1: 'Daily', 2: 'Weekly', 3: 'Monthly', 4: 'Quarterly', 5: 'Yearly', 6: 'Less than yearly'})
+                test_graph.write_image(f"{config.OUTPUT_DIR}/graphical_output/{variable}_{group_variable}.png")
+
+        return X
